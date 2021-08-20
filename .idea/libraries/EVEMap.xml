@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="EVEMap">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Source Code/EVEMap.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
