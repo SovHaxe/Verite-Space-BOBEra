@@ -128,7 +128,14 @@ public class DataManager {
 		}
 		rs.close();
 	}
-	
+
+	/**
+	 * Connects to The Persistence store and parses through the Jump objects to a Vector
+	 * @param system
+	 * @param jumpTable
+	 * @return the Vector map of all jumps
+	 * @throws SQLException
+	 */
 	private Vector<Jump> parseJumpInformation(HashMap<Integer, SolarSystem> system, HashMap<SolarSystem, List<SolarSystem>> jumpTable) throws SQLException{
 		//load jumps
 		ResultSet rs = dbPersister.getJumpMapInformation();
@@ -220,15 +227,25 @@ public class DataManager {
 	
 //	static Random random = new Random();
 	//TODO How TF does this work, WHY???
+
+	/**
+	 * Potential Quantized color - Potentially Squared distance on an RGB color cube
+	 *  > (11:13:14 PM) robbie_zino: looks like it's computing the squared distance on an RGB colour cube
+	 *  > (11:13:23 PM) Morkfang: looks like some quantizing tuff
+	 *
+	 *	Looks like this is an RGB color routine to create a visible pallet
+	 * TODO: Map this out in a flow diagram and calculate
+	 * @return
+	 */
 	public Color nextColor(){
 		int max = 0, min = 1000000000, cr = 0, cg = 0, cb = 0;
 		for(int r = 0; r < 256; r += 4)
 			for(int g = 0; g < 256; g += 4)
 				for(int b = 0; b < 256; b += 4){
-					if(r + g + b < 256 || r + g + b > 512)
+					if(r + g + b < 256 || r + g + b > 512) //
 						continue;
 					min = 1000000000;
-					for(Color c : colorTable){
+					for(Color c : colorTable){ // Pull color out from colorTable
 						int dred = r - c.getRed();
 						int dgreen = g - c.getGreen();
 						int dblue = b - c.getBlue();
@@ -246,7 +263,11 @@ public class DataManager {
 //		Color.getHSBColor(random.nextFloat(), 1.0F, 1.0F);
 		return new Color(cr, cg, cb, 0x90);
 	}
-	
+
+	/**
+	 * Persist the color of an alliance to db
+	 * @param al The Alliance to persist too
+	 */
 	public void saveColor(Alliance al){
 		String r = Integer.toHexString(al.getColor().getRed());
 		String g = Integer.toHexString(al.getColor().getGreen());

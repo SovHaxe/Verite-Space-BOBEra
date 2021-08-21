@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/EVEMapDom.iml" filepath="$PROJECT_DIR$/EVEMapDom.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../../VeriteSpace.iml" filepath="$PROJECT_DIR$/../../VeriteSpace.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../veritespace.iml" filepath="$PROJECT_DIR$/../../veritespace.iml" />
     </modules>
   </component>
 </project>

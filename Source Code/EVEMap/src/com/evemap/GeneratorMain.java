@@ -8,6 +8,7 @@ package com.evemap;
  *    [CE] Mirida (Multithreading)
  *    [CORE., AUS C] Verite Rendition (Various, General Upkeep: Aug 2007 to Present)
  *    [MOP] Calistra "Draekas" Darkwater (Multiple-Instance Name placement)
+ *	  [ASCEE] Kickguy223 (Documentation and Revitalization plus archiving of the Code for Future Eve players)
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:

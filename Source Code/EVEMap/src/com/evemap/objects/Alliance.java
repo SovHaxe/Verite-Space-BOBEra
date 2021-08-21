@@ -11,19 +11,33 @@ public class Alliance implements Comparable<Alliance>{
      private boolean npc = false;
      private long count = 0;
      long x = 0, y =0;
-     
-     public Alliance(String name, int id, Color nameColor, Color starColor, boolean npc){
+
+	/**
+	 *
+	 * @param name - Name of the Alliance
+	 * @param id - Id of the Alliance
+	 * @param nameColor - Color for the Alliance
+	 * @param starColor - What color the individual
+	 * @param npc - Is an NPC alliance
+	 */
+	public Alliance(String name, int id, Color nameColor, Color starColor, boolean npc){
     	 this(name, id);
     	 this.nameColor = nameColor;
     	 this.starColor = starColor;
     	 this.npc = npc;
      }
-     
-     public Alliance(String name, int id){
+
+	/**
+	 *
+	 * @param name
+	 * @param id
+	 */
+	public Alliance(String name, int id){
     	 this.name = name;
     	 this.id = id;
      }
-     
+
+
      public void setColor(Color c, List<Color> colorTable){
     	 color = new Color(c.getRGB());
     	 float[] hsb = Color.RGBtoHSB(color.getRed(), color.getGreen(), color.getBlue(), null);

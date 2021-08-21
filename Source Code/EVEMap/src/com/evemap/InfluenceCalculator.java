@@ -34,6 +34,14 @@ public class InfluenceCalculator implements Runnable{
 	private boolean useOldColors = false;
 	private Connection[] db;
 
+	/**
+	 *
+	 * @param data
+	 * @param soveregntyDate
+	 * @param dbPersister
+	 * @param jumps
+	 * @param db
+	 */
 	public InfluenceCalculator(DataManager data, String soveregntyDate, DBPersister dbPersister, Vector<Jump> jumps, Connection[] db){
 		this.soveregntyDate = soveregntyDate;
 		this.dbPersister = dbPersister;

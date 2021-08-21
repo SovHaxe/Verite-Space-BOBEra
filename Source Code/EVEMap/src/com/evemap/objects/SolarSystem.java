@@ -14,8 +14,8 @@ public class SolarSystem extends Point implements Comparable<SolarSystem>{
     public double[] influences;
     
     private boolean station;
-    
-    public SolarSystem(){}
+
+	public SolarSystem(){}
     
     public SolarSystem(SolarSystem ss){
     	this(ss.getId(), ss.getConstelationID(), ss.getRegionID(), ss.getSovLevel(), ss.hasStation(), ss.x, ss.y, ss.getSovereignty());
@@ -24,7 +24,19 @@ public class SolarSystem extends Point implements Comparable<SolarSystem>{
     	influences = new double[ss.influences.length];
     	System.arraycopy(ss.influences, 0, influences, 0, influences.length);
     }
-    
+
+	/**
+	 *
+	 * @param id
+	 * @param constelationID - Id of the constellation this Solar System is in
+	 * @param regionID - Id of the Region this Solar System is in
+	 * @param sovLevel
+	 * @param hasStation - Deprecated
+	 * @param x - X position on the map
+	 * @param y - Y position on the map
+	 * @param sovereignty - {@link Alliance} that owns the System
+	 *
+	 */
     public SolarSystem(int id, int constelationID, int regionID, int sovLevel, boolean hasStation, int x, int y, Alliance sovereignty){
     	super(x, y);
     	this.id = id;
