@@ -22,11 +22,11 @@ public class DataManager {
 	
 	//Hashtable of all of the alliances
 	private HashMap<Integer, Alliance> alliances = new HashMap<Integer, Alliance>();
-//	Hashtable of the solar systems
+	//	Hashtable of the solar systems
 	private HashMap<Integer, SolarSystem> systems = new HashMap<Integer, SolarSystem>(250);
-//	Vector of all the systems with sov claims
+	//	Vector of all the systems with sov claims
 	private List<SolarSystem> systemsSov = new ArrayList<SolarSystem>();
-//	Hashtable of all the stargates for distributing inflence
+	//	Hashtable of all the stargates for distributing inflence
 	private HashMap<SolarSystem, List<SolarSystem>> jumpsTable = new HashMap<SolarSystem, List<SolarSystem>>();
 	
 	//Colortable for the alliance
@@ -52,6 +52,11 @@ public class DataManager {
 		}
 	}
 
+
+	/**
+	 * Create the persistance system as well as begin to handle a window.
+	 * @throws SQLException
+	 */
 	private void resolveDBInformation() throws SQLException {
 //			System.out.println(Runtime.getRuntime().freeMemory()/1048576 + "MB");
 			p = new SysSovPersistor(dbPersister);
@@ -128,7 +133,14 @@ public class DataManager {
 		}
 		rs.close();
 	}
-	
+
+	/**
+	 * Connects to The Persistence store and parses through the Jump objects to a Vector
+	 * @param system
+	 * @param jumpTable
+	 * @return the Vector map of all jumps
+	 * @throws SQLException
+	 */
 	private Vector<Jump> parseJumpInformation(HashMap<Integer, SolarSystem> system, HashMap<SolarSystem, List<SolarSystem>> jumpTable) throws SQLException{
 		//load jumps
 		ResultSet rs = dbPersister.getJumpMapInformation();
@@ -220,20 +232,30 @@ public class DataManager {
 	
 //	static Random random = new Random();
 	//TODO How TF does this work, WHY???
+
+	/**
+	 * Potential Quantized color - Potentially Squared distance on an RGB color cube
+	 *  > (11:13:14 PM) robbie_zino: looks like it's computing the squared distance on an RGB colour cube
+	 *  > (11:13:23 PM) Morkfang: looks like some quantizing tuff
+	 *
+	 *	Looks like this is an RGB color routine to create a visible pallet and avoid being too near to another color
+	 * TODO: Map this out in a flow diagram and calculate
+	 * @return {@link Color}
+	 */
 	public Color nextColor(){
 		int max = 0, min = 1000000000, cr = 0, cg = 0, cb = 0;
 		for(int r = 0; r < 256; r += 4)
 			for(int g = 0; g < 256; g += 4)
 				for(int b = 0; b < 256; b += 4){
-					if(r + g + b < 256 || r + g + b > 512)
+					if(r + g + b < 256 || r + g + b > 512) //
 						continue;
 					min = 1000000000;
-					for(Color c : colorTable){
+					for(Color c : colorTable){ // Pull color out from colorTable
 						int dred = r - c.getRed();
 						int dgreen = g - c.getGreen();
 						int dblue = b - c.getBlue();
 						int dif = dred * dred + dgreen * dgreen + dblue * dblue;
-						if(min > dif)
+						if(min > dif) // Is the difference greater then the minimum difference
 							min = dif;
 					}
 					if(max < min){
@@ -246,7 +268,11 @@ public class DataManager {
 //		Color.getHSBColor(random.nextFloat(), 1.0F, 1.0F);
 		return new Color(cr, cg, cb, 0x90);
 	}
-	
+
+	/**
+	 * Persist the color of an alliance to db
+	 * @param al The Alliance to persist too
+	 */
 	public void saveColor(Alliance al){
 		String r = Integer.toHexString(al.getColor().getRed());
 		String g = Integer.toHexString(al.getColor().getGreen());
