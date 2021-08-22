@@ -22,11 +22,11 @@ public class DataManager {
 	
 	//Hashtable of all of the alliances
 	private HashMap<Integer, Alliance> alliances = new HashMap<Integer, Alliance>();
-//	Hashtable of the solar systems
+	//	Hashtable of the solar systems
 	private HashMap<Integer, SolarSystem> systems = new HashMap<Integer, SolarSystem>(250);
-//	Vector of all the systems with sov claims
+	//	Vector of all the systems with sov claims
 	private List<SolarSystem> systemsSov = new ArrayList<SolarSystem>();
-//	Hashtable of all the stargates for distributing inflence
+	//	Hashtable of all the stargates for distributing inflence
 	private HashMap<SolarSystem, List<SolarSystem>> jumpsTable = new HashMap<SolarSystem, List<SolarSystem>>();
 	
 	//Colortable for the alliance
@@ -52,6 +52,11 @@ public class DataManager {
 		}
 	}
 
+
+	/**
+	 * Create the persistance system as well as begin to handle a window.
+	 * @throws SQLException
+	 */
 	private void resolveDBInformation() throws SQLException {
 //			System.out.println(Runtime.getRuntime().freeMemory()/1048576 + "MB");
 			p = new SysSovPersistor(dbPersister);
@@ -233,9 +238,9 @@ public class DataManager {
 	 *  > (11:13:14 PM) robbie_zino: looks like it's computing the squared distance on an RGB colour cube
 	 *  > (11:13:23 PM) Morkfang: looks like some quantizing tuff
 	 *
-	 *	Looks like this is an RGB color routine to create a visible pallet
+	 *	Looks like this is an RGB color routine to create a visible pallet and avoid being too near to another color
 	 * TODO: Map this out in a flow diagram and calculate
-	 * @return
+	 * @return {@link Color}
 	 */
 	public Color nextColor(){
 		int max = 0, min = 1000000000, cr = 0, cg = 0, cb = 0;
@@ -250,7 +255,7 @@ public class DataManager {
 						int dgreen = g - c.getGreen();
 						int dblue = b - c.getBlue();
 						int dif = dred * dred + dgreen * dgreen + dblue * dblue;
-						if(min > dif)
+						if(min > dif) // Is the difference greater then the minimum difference
 							min = dif;
 					}
 					if(max < min){
