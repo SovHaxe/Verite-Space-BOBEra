@@ -1,5 +1,7 @@
 *.class
 /.idea/*
+*.jar
+target
 
 /Source Code/EVEMap/.idea/compiler.xml
 /Source Code/EVEMap/.idea/jarRepositories.xml
