@@ -1,3 +1,7 @@
 *.class
 /.idea/
 *.iml
+/Source Code/EVEMap/.idea/compiler.xml
+/Source Code/EVEMap/.idea/jarRepositories.xml
+/Source Code/EVEMap/.idea/libraries/Maven__com_google_protobuf_protobuf_java_3_11_4.xml
+/Source Code/EVEMap/.idea/libraries/Maven__mysql_mysql_connector_java_8_0_26.xml
